@@ -1,0 +1,48 @@
+#define LU9685_adrr1 0x00        // LU9685_adrr1=A4*32+A3*16+A2*8+A1*4+A0*2,LU9685模块上面焊点短接的话Ax=1，否则为0
+typedef  unsigned char  uchar;        
+typedef  unsigned int   uint;    
+uchar m,n;
+void setPWM(uchar adder,uchar num,uchar off) 
+{
+  Serial.write(0XFA);
+  Serial.write(adder);
+  Serial.write(num);
+  Serial.write(off);
+  Serial.write(0XFE);
+}
+void LU9685_reset(uchar adder) 
+{
+  Serial.write(0XFA);
+  Serial.write(adder);
+  Serial.write(0XFB);
+  Serial.write(0XFB);
+  Serial.write(0XFE);
+}
+void setup() {
+   Serial.begin(9600);          
+LU9685_reset(LU9685_adrr1); 
+}
+
+
+
+void loop() {
+  while(1)
+  {
+    for(n=0;n<16;n++)
+    {
+      for(m=0;m<=180;m++)
+      {
+        setPWM(LU9685_adrr1,n,m);           
+      }         
+    }
+    delay(500); 
+    for(n=0;n<16;n++)
+    {
+      for(m=0;m<=180;m++)
+      {
+        setPWM(LU9685_adrr1,15-n,180-m);            
+      }         
+    }   
+    delay(500);                     
+  }
+}
