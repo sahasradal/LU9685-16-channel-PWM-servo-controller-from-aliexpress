@@ -1,2 +1,2 @@
 # LU9685-16-channel-PWM-servo-controller-from-aliexpress
-LU9685 16 channel PWM servo controller from ali express can be controlled by UART and I2C.
+LU9685 16 channel PWM servo controller from ali express can be controlled by UART and I2C.LU9685 16 channel PWM servo controller from ali express can be controlled by UART and I2C. The arduino sketch controls pin0 as a test case through uart. The problem with this board is that the IC outputs 2.5v PWM. If we want to drive 5v loads need to level shift with a 3.3v to 5v level shifter.. TX of uno connects to RX of the pwm board. The output of the driver needs to be fed into a level shifter if 5v load is used else use output from board
